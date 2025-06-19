@@ -1,22 +1,25 @@
 {
-  "name": "ddd",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@types/node": "^24.0.3",
-    "typescript": "^5.8.3",
-    "vite-tsconfig-paths": "^5.1.4"
-  },
-  "dependencies": {
-    "dayjs": "^1.11.13",
-    "vitest": "^3.2.4"
-  }
+	"name": "ddd",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@biomejs/biome": "2.0.0",
+		"@types/node": "^24.0.3",
+		"globals": "^16.2.0",
+		"prettier": "3.5.3",
+		"typescript": "^5.8.3",
+		"vite-tsconfig-paths": "^5.1.4"
+	},
+	"dependencies": {
+		"dayjs": "^1.11.13",
+		"vitest": "^3.2.4"
+	}
 }
