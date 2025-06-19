@@ -4,6 +4,8 @@ import { Question } from '@/domain/forum/enterprise/entities/question'
 export class InMemoryQuestionsRepository
 	implements QuestionsRepository
 {
+	public items: Question[] = []
+
 	async findById(id: string): Promise<Question | null> {
 		const question = this.items.find(
 			(item) => item.id.toString() === id,
@@ -15,8 +17,6 @@ export class InMemoryQuestionsRepository
 
 		return question
 	}
-	public items: Question[] = []
-
 	async findBySlug(slug: string) {
 		const question = this.items.find(
 			(item) => item.slug.value === slug,
@@ -31,6 +31,13 @@ export class InMemoryQuestionsRepository
 
 	async create(question: Question) {
 		this.items.push(question)
+	}
+
+	async save(question: Question): Promise<void> {
+		const itemIndex = this.items.findIndex(
+			(item) => item.id === question.id,
+		)
+		this.items[itemIndex] = question
 	}
 
 	async delete(question: Question): Promise<void> {

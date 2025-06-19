@@ -27,6 +27,9 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"complexity": {
+				"noBannedTypes": "off"
+			},
 			"correctness": {
 				"noUnusedVariables": "error",
 				"noUnusedImports": "error",
