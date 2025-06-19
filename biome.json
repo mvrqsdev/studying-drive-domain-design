@@ -19,7 +19,7 @@
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"lineWidth": 70,
+		"lineWidth": 90,
 		"attributePosition": "multiline",
 		"lineEnding": "lf"
 	},
