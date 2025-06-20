@@ -55,7 +55,6 @@ describe('Edit Question', () => {
 			title: 'Pergunta teste',
 			content: 'Conteúdo teste',
 		})
-
 		expect(inMemoryQuestionsRepository.items[0].attachments.currentItems).toHaveLength(2)
 		expect(inMemoryQuestionsRepository.items[0].attachments.currentItems).toEqual([
 			expect.objectContaining({ attachmentId: new UniqueEntityID('1') }),

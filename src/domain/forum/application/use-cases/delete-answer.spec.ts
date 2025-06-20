@@ -1,15 +1,20 @@
 import { makeAnswer } from 'test/factories/make-answer'
+import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
 import { DeleteAnswerUseCase } from './delete-answer'
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: DeleteAnswerUseCase
 
 describe('Delete Answer', () => {
 	beforeEach(() => {
-		inMemoryAnswersRepository = new InMemoryAnswersRepository()
+		inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentsRepository()
+		inMemoryAnswersRepository = new InMemoryAnswersRepository(
+			inMemoryAnswerAttachmentsRepository,
+		)
 		sut = new DeleteAnswerUseCase(inMemoryAnswersRepository)
 	})
 
