@@ -2,23 +2,23 @@ import { QuestionAttachmentsRepository } from '@/domain/forum/application/reposi
 import { QuestionAttachment } from '@/domain/forum/enterprise/entities/question-attachment'
 
 export class InMemoryQuestionAttachmentsRepository
-  implements QuestionAttachmentsRepository
+	implements QuestionAttachmentsRepository
 {
-  public items: QuestionAttachment[] = []
+	public items: QuestionAttachment[] = []
 
-  async findManyByQuestionId(questionId: string) {
-    const questionAttachments = this.items.filter(
-      (item) => item.questionId.toString() === questionId,
-    )
+	async findManyByQuestionId(questionId: string) {
+		const questionAttachments = this.items.filter(
+			(item) => item.questionId.toString() === questionId,
+		)
 
-    return questionAttachments
-  }
+		return questionAttachments
+	}
 
-  async deleteManyByQuestionId(questionId: string) {
-    const questionAttachments = this.items.filter(
-      (item) => item.questionId.toString() !== questionId,
-    )
+	async deleteManyByQuestionId(questionId: string) {
+		const questionAttachments = this.items.filter(
+			(item) => item.questionId.toString() !== questionId,
+		)
 
-    this.items = questionAttachments
-  }
+		this.items = questionAttachments
+	}
 }
