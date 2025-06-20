@@ -6,9 +6,6 @@
 		"useIgnoreFile": false
 	},
 	"json": {
-		"formatter": {
-			"expand": "always"
-		},
 		"parser": {
 			"allowComments": true
 		}
@@ -55,9 +52,7 @@
 		},
 		"formatter": {
 			"quoteStyle": "single",
-			"semicolons": "asNeeded",
-			"expand": "always",
-			"attributePosition": "multiline"
+			"semicolons": "asNeeded"
 		}
 	},
 	"assist": {
