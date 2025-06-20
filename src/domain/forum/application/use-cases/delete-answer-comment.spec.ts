@@ -1,15 +1,16 @@
 import { makeAnswerComment } from 'test/factories/make-answer-comment'
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comments-repository'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { DeleteAnswerCommentUseCase } from './delete-answer-comment'
-import { NotAllowedError } from './errors/not-allowed-error'
+import { DeleteAnswerCommentUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment'
+import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: DeleteAnswerCommentUseCase
 
-describe('Delete answer comment', () => {
+describe('Delete Answer Comment', () => {
 	beforeEach(() => {
 		inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
+
 		sut = new DeleteAnswerCommentUseCase(inMemoryAnswerCommentsRepository)
 	})
 
@@ -26,7 +27,7 @@ describe('Delete answer comment', () => {
 		expect(inMemoryAnswerCommentsRepository.items).toHaveLength(0)
 	})
 
-	it('should not be able to delete a another user answer comment', async () => {
+	it('should not be able to delete another user answer comment', async () => {
 		const answerComment = makeAnswerComment({
 			authorId: new UniqueEntityID('author-1'),
 		})
@@ -37,6 +38,7 @@ describe('Delete answer comment', () => {
 			answerCommentId: answerComment.id.toString(),
 			authorId: 'author-2',
 		})
+
 		expect(result.isLeft()).toBe(true)
 		expect(result.value).toBeInstanceOf(NotAllowedError)
 	})

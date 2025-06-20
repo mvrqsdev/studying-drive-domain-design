@@ -1,13 +1,13 @@
 import { Either, left, right } from '@/core/either'
-import { Question } from '../../enterprise/entities/question'
-import type { AnswersRepository } from '../repositories/answers-repository'
-import { QuestionsRepository } from '../repositories/questions-repository'
-import { NotAllowedError } from './errors/not-allowed-error'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
+import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { AnswersRepository } from '../repositories/answers-repository'
 
 interface ChooseQuestionBestAnswerUseCaseRequest {
-	answerId: string
 	authorId: string
+	answerId: string
 }
 
 type ChooseQuestionBestAnswerUseCaseResponse = Either<
@@ -33,7 +33,7 @@ export class ChooseQuestionBestAnswerUseCase {
 			return left(new ResourceNotFoundError())
 		}
 
-		const question = await this.questionsRepository.findById(answer.questionId.toValue())
+		const question = await this.questionsRepository.findById(answer.questionId.toString())
 
 		if (!question) {
 			return left(new ResourceNotFoundError())

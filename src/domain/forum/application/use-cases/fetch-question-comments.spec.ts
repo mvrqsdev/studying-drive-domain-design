@@ -1,7 +1,7 @@
 import { makeQuestionComment } from 'test/factories/make-question-comment'
 import { InMemoryQuestionCommentsRepository } from 'test/repositories/in-memory-question-comments-repository'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { FetchQuestionCommentsUseCase } from './fetch-question-comments'
+import { FetchQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-question-comments'
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: FetchQuestionCommentsUseCase
@@ -18,11 +18,13 @@ describe('Fetch Question Comments', () => {
 				questionId: new UniqueEntityID('question-1'),
 			}),
 		)
+
 		await inMemoryQuestionCommentsRepository.create(
 			makeQuestionComment({
 				questionId: new UniqueEntityID('question-1'),
 			}),
 		)
+
 		await inMemoryQuestionCommentsRepository.create(
 			makeQuestionComment({
 				questionId: new UniqueEntityID('question-1'),
@@ -36,6 +38,7 @@ describe('Fetch Question Comments', () => {
 
 		expect(result.value?.questionComments).toHaveLength(3)
 	})
+
 	it('should be able to fetch paginated question comments', async () => {
 		for (let i = 1; i <= 22; i++) {
 			await inMemoryQuestionCommentsRepository.create(

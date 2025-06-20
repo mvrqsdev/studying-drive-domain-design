@@ -1,8 +1,8 @@
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
 import { EditAnswerUseCase } from './edit-answer'
-import { NotAllowedError } from './errors/not-allowed-error'
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: EditAnswerUseCase
@@ -22,6 +22,7 @@ describe('Edit Answer', () => {
 		)
 
 		await inMemoryAnswersRepository.create(newAnswer)
+
 		await sut.execute({
 			answerId: newAnswer.id.toValue(),
 			authorId: 'author-1',
@@ -42,6 +43,7 @@ describe('Edit Answer', () => {
 		)
 
 		await inMemoryAnswersRepository.create(newAnswer)
+
 		const result = await sut.execute({
 			answerId: newAnswer.id.toValue(),
 			authorId: 'author-2',

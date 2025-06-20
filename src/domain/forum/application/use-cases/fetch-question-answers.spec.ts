@@ -1,7 +1,7 @@
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { FetchQuestionAnswersUseCase } from './fetch-question-answers'
+import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers'
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: FetchQuestionAnswersUseCase
@@ -36,6 +36,7 @@ describe('Fetch Question Answers', () => {
 
 		expect(result.value?.answers).toHaveLength(3)
 	})
+
 	it('should be able to fetch paginated question answers', async () => {
 		for (let i = 1; i <= 22; i++) {
 			await inMemoryAnswersRepository.create(
