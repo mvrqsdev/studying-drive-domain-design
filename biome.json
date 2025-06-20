@@ -25,7 +25,8 @@
 		"rules": {
 			"recommended": true,
 			"complexity": {
-				"noBannedTypes": "off"
+				"noBannedTypes": "off",
+				"noStaticOnlyClass": "off"
 			},
 			"correctness": {
 				"noUnusedVariables": "error",
